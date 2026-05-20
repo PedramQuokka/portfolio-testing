@@ -13,9 +13,10 @@ html {
 }
 
 body {
-  background-color: #ffffff;
-  color: #0d0d0d;
+  background-color: #fbfaf4;
+  color: #111111;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-width: 320px;
 }
 
 a {
@@ -29,7 +30,176 @@ button {
   background: none;
 }
 
-/* Scrollbar Styling */
+.canvas-grid {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.16) 1px, transparent 1px);
+  background-position: 0 0;
+  background-size: 24px 24px;
+}
+
+.whiteboard-stage {
+  position: relative;
+  min-height: 620px;
+}
+
+.whiteboard-stage::before {
+  position: absolute;
+  inset: 24px 0 0 36px;
+  content: '';
+  border: 2px dashed rgba(17, 17, 17, 0.28);
+  border-radius: 8px;
+  transform: rotate(-1deg);
+}
+
+.artifact-card,
+.sticky-note,
+.stamp-card,
+.cursor-tag {
+  position: absolute;
+  border: 2px solid #111111;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 #111111;
+}
+
+.artifact-card {
+  background: #ffffff;
+  padding: 24px;
+}
+
+.artifact-main {
+  top: 86px;
+  left: 8%;
+  width: min(380px, 62%);
+  min-height: 310px;
+  transform: rotate(-1.5deg);
+}
+
+.sticky-note {
+  display: grid;
+  place-items: center;
+  width: 172px;
+  min-height: 136px;
+  padding: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.note-a {
+  top: 56px;
+  right: 8%;
+  background: #ffe872;
+  transform: rotate(4deg);
+}
+
+.note-b {
+  right: 18%;
+  bottom: 118px;
+  background: #a8f0d4;
+  transform: rotate(-5deg);
+}
+
+.note-c {
+  left: 22%;
+  bottom: 42px;
+  background: #ffb49a;
+  transform: rotate(3deg);
+}
+
+.stamp-card {
+  right: 4%;
+  bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 260px;
+  padding: 14px 16px;
+  background: #ffffff;
+}
+
+.stamp-dot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #111111;
+  border-radius: 999px;
+}
+
+.connector {
+  position: absolute;
+  z-index: 0;
+  height: 0;
+  border-top: 3px solid #111111;
+  transform-origin: left center;
+}
+
+.connector::after {
+  position: absolute;
+  top: -7px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
+  content: '';
+  border-top: 3px solid #111111;
+  border-right: 3px solid #111111;
+  transform: rotate(45deg);
+}
+
+.connector-one {
+  top: 228px;
+  left: 44%;
+  width: 210px;
+  transform: rotate(-17deg);
+}
+
+.connector-two {
+  right: 22%;
+  bottom: 196px;
+  width: 180px;
+  transform: rotate(153deg);
+}
+
+.cursor-tag {
+  z-index: 2;
+  padding: 8px 10px;
+  color: #111111;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cursor-tag::before {
+  position: absolute;
+  left: -11px;
+  bottom: -11px;
+  width: 0;
+  height: 0;
+  content: '';
+  border-top: 13px solid #111111;
+  border-right: 13px solid transparent;
+}
+
+.cursor-one {
+  top: 36px;
+  left: 48%;
+  background: #9ed9ff;
+}
+
+.cursor-two {
+  right: 14%;
+  bottom: 278px;
+  background: #cfc4ff;
+}
+
+.case-card,
+.process-card {
+  min-width: 0;
+}
+
+::selection {
+  color: #111111;
+  background: #fff36d;
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -46,4 +216,87 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b8b8b8;
+}
+
+@media (max-width: 900px) {
+  .whiteboard-stage {
+    min-height: 560px;
+  }
+
+  .artifact-main {
+    left: 5%;
+    width: 70%;
+  }
+
+  .note-a {
+    right: 2%;
+  }
+
+  .note-b {
+    right: 6%;
+  }
+
+  .connector-one,
+  .connector-two {
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 640px) {
+  .whiteboard-stage {
+    min-height: 620px;
+  }
+
+  .whiteboard-stage::before {
+    inset: 12px 0 0 0;
+  }
+
+  .artifact-main {
+    top: 42px;
+    left: 0;
+    width: calc(100% - 26px);
+    min-height: 286px;
+  }
+
+  .sticky-note {
+    width: 142px;
+    min-height: 112px;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .note-a {
+    top: 330px;
+    right: 0;
+  }
+
+  .note-b {
+    right: auto;
+    left: 0;
+    bottom: 76px;
+  }
+
+  .note-c {
+    right: 0;
+    left: auto;
+    bottom: 20px;
+  }
+
+  .stamp-card {
+    right: auto;
+    bottom: 200px;
+    left: 6px;
+    max-width: 210px;
+  }
+
+  .connector,
+  .cursor-two {
+    display: none;
+  }
+
+  .cursor-one {
+    top: 16px;
+    right: 10px;
+    left: auto;
+  }
 }

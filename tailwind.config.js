@@ -7,18 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Figma-inspired palette
-        'fg-primary': '#0D0D0D',
-        'fg-secondary': '#4F4F4F',
-        'fg-tertiary': '#8B8B8B',
-        'bg-primary': '#FFFFFF',
-        'bg-secondary': '#F3F3F3',
-        'bg-tertiary': '#EBEBEB',
-        'accent-primary': '#18A0FB',
-        'accent-secondary': '#1EA7E1',
-        'success': '#27AE60',
-        'warning': '#F2CC0F',
-        'error': '#F24444',
+        ink: '#111111',
+        'ink-soft': '#4A4A4A',
+        canvas: '#FBFAF4',
+        paper: '#FFFFFF',
+        highlighter: '#FFF36D',
+        'sticky-yellow': '#FFE872',
+        'sticky-mint': '#A8F0D4',
+        'sticky-blue': '#9ED9FF',
+        'sticky-peach': '#FFB49A',
+        'sticky-lilac': '#CFC4FF',
       },
       fontFamily: {
         sans: [
@@ -45,8 +43,10 @@ module.exports = {
       borderRadius: {
         'sm': '4px',
         'md': '8px',
-        'lg': '12px',
-        'xl': '16px',
+      },
+      boxShadow: {
+        solid: '5px 5px 0 #111111',
+        'solid-white': '5px 5px 0 rgba(255, 255, 255, 0.35)',
       },
     },
   },

@@ -1,212 +1,311 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
+
+const caseStudies = [
+  {
+    title: 'CareNav onboarding',
+    type: 'Mobile health',
+    role: 'Lead UX designer',
+    outcome: '+31% completed first appointment setup',
+    prompt: 'Reduce anxiety for first-time patients booking virtual care.',
+    notes: ['Discovery interviews', 'Journey map', 'Prototype tests'],
+    accent: 'bg-sticky-yellow',
+  },
+  {
+    title: 'Pulse research hub',
+    type: 'B2B SaaS',
+    role: 'Product designer',
+    outcome: '2.4x faster insight retrieval for product teams',
+    prompt: 'Make customer evidence easier to find, trust, and reuse.',
+    notes: ['Taxonomy', 'Search flows', 'Design system'],
+    accent: 'bg-sticky-mint',
+  },
+  {
+    title: 'Checkout clarity sprint',
+    type: 'E-commerce',
+    role: 'UX strategist',
+    outcome: '-18% checkout support tickets',
+    prompt: 'Clarify fees, delivery timing, and account creation choices.',
+    notes: ['Heuristic review', 'A/B variants', 'Content design'],
+    accent: 'bg-sticky-peach',
+  },
+]
+
+const processSteps = [
+  {
+    label: '01',
+    title: 'Frame',
+    copy: 'Turn a fuzzy request into user, business, and evidence questions.',
+  },
+  {
+    label: '02',
+    title: 'Map',
+    copy: 'Lay out journeys, service moments, assumptions, and decision points.',
+  },
+  {
+    label: '03',
+    title: 'Prototype',
+    copy: 'Create just enough fidelity to test language, behavior, and flow.',
+  },
+  {
+    label: '04',
+    title: 'Measure',
+    copy: 'Ship with learning goals, success signals, and a clear iteration loop.',
+  },
+]
+
+const skills = [
+  'UX research',
+  'Interaction design',
+  'Design systems',
+  'Workshop facilitation',
+  'Information architecture',
+  'Prototype testing',
+  'Product strategy',
+  'Content design',
+]
+
+const boardNotes = [
+  { text: 'What changed for the user?', className: 'note-a' },
+  { text: 'Show the messy middle.', className: 'note-b' },
+  { text: 'Outcome before artifact.', className: 'note-c' },
+]
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
   return (
     <>
       <Head>
-        <title>Portfolio - Your Name</title>
-        <meta name="description" content="Modern portfolio website inspired by Figma" />
+        <title>UX Portfolio Template - FigJam Inspired</title>
+        <meta
+          name="description"
+          content="A collaborative, whiteboard-inspired UX portfolio template for case studies, process work, and product design outcomes."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen bg-white">
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 bg-white bg-opacity-90 backdrop-blur-sm border-b border-fg-tertiary border-opacity-10 z-50">
-          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-            <h1 className="text-lg font-semibold text-fg-primary">Your Name</h1>
-            <div className="flex gap-8">
-              <Link href="#projects" className="text-fg-secondary hover:text-fg-primary transition-colors">Projects</Link>
-              <Link href="#about" className="text-fg-secondary hover:text-fg-primary transition-colors">About</Link>
-              <Link href="#skills" className="text-fg-secondary hover:text-fg-primary transition-colors">Skills</Link>
-              <Link href="#contact" className="text-fg-secondary hover:text-fg-primary transition-colors">Contact</Link>
+      <main className="min-h-screen bg-canvas text-ink">
+        <nav className="sticky top-0 z-50 border-b border-ink/10 bg-canvas/90 backdrop-blur">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
+            <a href="#top" className="flex items-center gap-3 font-semibold">
+              <span className="grid h-9 w-9 place-items-center rounded-md border-2 border-ink bg-white shadow-solid">
+                YN
+              </span>
+              <span>Your Name</span>
+            </a>
+
+            <div className="hidden items-center gap-6 text-sm text-ink-soft md:flex">
+              <a className="transition hover:text-ink" href="#work">
+                Work
+              </a>
+              <a className="transition hover:text-ink" href="#process">
+                Process
+              </a>
+              <a className="transition hover:text-ink" href="#about">
+                About
+              </a>
+              <a className="transition hover:text-ink" href="#contact">
+                Contact
+              </a>
             </div>
+
+            <a
+              className="rounded-md border-2 border-ink bg-ink px-4 py-2 text-sm font-semibold text-white shadow-solid transition hover:-translate-y-0.5"
+              href="mailto:hello@example.com"
+            >
+              Email me
+            </a>
           </div>
         </nav>
 
-        {/* Hero Section */}
-        <section className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
-          <div
-            className="transform transition-all duration-300"
-            style={{ transform: `translateY(${scrollY * 0.3}px)` }}
-          >
-            <h2 className="text-6xl md:text-7xl font-bold text-fg-primary mb-6 leading-tight">
-              Build beautiful
-              <br />
-              things on the web
-            </h2>
-            <p className="text-xl text-fg-secondary max-w-2xl mb-12 leading-relaxed">
-              Designer and developer crafting modern, intuitive digital experiences. Inspired by clean design principles and Figma's collaborative approach.
-            </p>
-            <div className="flex gap-4">
-              <a
-                href="#projects"
-                className="px-8 py-3 bg-accent-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition-all hover:shadow-lg"
-              >
-                View My Work
-              </a>
-              <a
-                href="#contact"
-                className="px-8 py-3 border-2 border-fg-primary text-fg-primary rounded-lg font-medium hover:bg-fg-primary hover:text-white transition-all"
-              >
-                Get in Touch
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Projects Section */}
-        <section id="projects" className="py-20 px-6 bg-bg-secondary">
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-4xl font-bold text-fg-primary mb-4">Selected Work</h3>
-            <p className="text-fg-secondary mb-16">A selection of projects that showcase my design and development skills.</p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[1, 2, 3, 4].map((project) => (
-                <div
-                  key={project}
-                  className="group bg-white rounded-lg overflow-hidden border border-bg-tertiary hover:border-accent-primary transition-all hover:shadow-lg cursor-pointer"
-                >
-                  <div className="aspect-video bg-bg-tertiary flex items-center justify-center overflow-hidden">
-                    <div className="text-6xl font-bold text-bg-tertiary group-hover:scale-110 transition-transform duration-300">
-                      {project}
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-semibold text-fg-primary mb-2">Project Title {project}</h4>
-                    <p className="text-fg-secondary mb-4">Brief description of your project and the technologies used.</p>
-                    <div className="flex gap-2 flex-wrap">
-                      <span className="px-3 py-1 bg-bg-secondary text-sm text-fg-secondary rounded-full">React</span>
-                      <span className="px-3 py-1 bg-bg-secondary text-sm text-fg-secondary rounded-full">TypeScript</span>
-                      <span className="px-3 py-1 bg-bg-secondary text-sm text-fg-secondary rounded-full">Design</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* About Section */}
-        <section id="about" className="py-20 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-4xl font-bold text-fg-primary mb-6">About Me</h3>
-                <div className="space-y-4 text-fg-secondary leading-relaxed">
-                  <p>
-                    I'm a designer and developer passionate about creating beautiful, functional digital experiences. My work is inspired by the collaborative and minimalist design principles I admire in tools like Figma.
-                  </p>
-                  <p>
-                    With a background in both design and development, I bridge the gap between aesthetics and functionality. I believe great digital products come from thoughtful design and clean code.
-                  </p>
-                  <p>
-                    When I'm not designing or coding, you'll find me exploring new design tools, contributing to open-source projects, or sharing my knowledge with the community.
-                  </p>
-                </div>
-              </div>
-              <div className="bg-bg-secondary rounded-lg p-8 flex items-center justify-center min-h-80">
-                <div className="text-center">
-                  <div className="w-24 h-24 rounded-full bg-bg-tertiary mx-auto mb-4"></div>
-                  <p className="text-fg-secondary">Your photo here</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Skills Section */}
-        <section id="skills" className="py-20 px-6 bg-bg-secondary">
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-4xl font-bold text-fg-primary mb-16">Skills & Experience</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: 'Design',
-                  skills: ['UI/UX Design', 'Figma', 'Design Systems', 'Prototyping', 'Wireframing'],
-                },
-                {
-                  title: 'Frontend Development',
-                  skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'JavaScript'],
-                },
-                {
-                  title: 'Tools & Others',
-                  skills: ['Git', 'Node.js', 'REST APIs', 'Problem Solving', 'Collaboration'],
-                },
-              ].map((category) => (
-                <div key={category.title} className="bg-white rounded-lg p-8 border border-bg-tertiary hover:border-accent-primary transition-colors">
-                  <h4 className="text-xl font-semibold text-fg-primary mb-4">{category.title}</h4>
-                  <ul className="space-y-3">
-                    {category.skills.map((skill) => (
-                      <li key={skill} className="text-fg-secondary flex items-center">
-                        <span className="w-2 h-2 bg-accent-primary rounded-full mr-3"></span>
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section id="contact" className="py-20 px-6">
-          <div className="max-w-2xl mx-auto text-center">
-            <h3 className="text-4xl font-bold text-fg-primary mb-6">Let's Connect</h3>
-            <p className="text-lg text-fg-secondary mb-12">
-              I'm always interested in hearing about interesting projects and opportunities. Feel free to reach out!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:your.email@example.com"
-                className="px-8 py-3 bg-accent-primary text-white rounded-lg font-medium hover:bg-opacity-90 transition-all hover:shadow-lg"
-              >
-                Send an Email
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 border-2 border-fg-primary text-fg-primary rounded-lg font-medium hover:bg-fg-primary hover:text-white transition-all"
-              >
-                Follow on Twitter
-              </a>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex gap-6 justify-center mt-12">
-              {['Twitter', 'GitHub', 'LinkedIn'].map((social) => (
+        <section
+          id="top"
+          className="canvas-grid relative overflow-hidden border-b border-ink/10 px-5 py-12 sm:px-8 lg:py-16"
+        >
+          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="max-w-3xl">
+              <p className="mb-5 inline-flex rounded-md border-2 border-ink bg-sticky-blue px-3 py-1 text-sm font-semibold shadow-solid">
+                Product designer / UX researcher
+              </p>
+              <h1 className="text-5xl font-black leading-none sm:text-6xl lg:text-7xl">
+                Portfolio work that feels like a working board.
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft sm:text-xl">
+                A template for showing how you frame problems, run research, test ideas, and turn messy product questions into shipped experiences.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  key={social}
-                  href="#"
-                  className="text-fg-secondary hover:text-accent-primary transition-colors text-sm"
+                  className="rounded-md border-2 border-ink bg-ink px-5 py-3 text-center font-semibold text-white shadow-solid transition hover:-translate-y-0.5"
+                  href="#work"
                 >
-                  {social}
+                  View case studies
                 </a>
+                <a
+                  className="rounded-md border-2 border-ink bg-white px-5 py-3 text-center font-semibold shadow-solid transition hover:-translate-y-0.5"
+                  href="#process"
+                >
+                  See process
+                </a>
+              </div>
+            </div>
+
+            <div className="whiteboard-stage" aria-label="UX portfolio board preview">
+              <div className="connector connector-one" />
+              <div className="connector connector-two" />
+              <div className="cursor-tag cursor-one">Research lead</div>
+              <div className="cursor-tag cursor-two">PM</div>
+
+              <div className="artifact-card artifact-main">
+                <p className="text-sm font-semibold text-ink-soft">Case study frame</p>
+                <h2 className="mt-2 text-2xl font-black">Problem to proof</h2>
+                <div className="mt-5 space-y-3">
+                  <div className="h-3 w-5/6 rounded-sm bg-ink/80" />
+                  <div className="h-3 w-2/3 rounded-sm bg-ink/35" />
+                  <div className="h-3 w-4/5 rounded-sm bg-ink/20" />
+                </div>
+                <div className="mt-6 grid grid-cols-3 gap-2">
+                  <span className="h-14 rounded-md bg-sticky-yellow" />
+                  <span className="h-14 rounded-md bg-sticky-mint" />
+                  <span className="h-14 rounded-md bg-sticky-lilac" />
+                </div>
+              </div>
+
+              {boardNotes.map((note) => (
+                <div key={note.text} className={`sticky-note ${note.className}`}>
+                  {note.text}
+                </div>
+              ))}
+
+              <div className="stamp-card">
+                <span className="stamp-dot bg-sticky-peach" />
+                <span className="stamp-dot bg-sticky-blue" />
+                <span className="stamp-dot bg-sticky-mint" />
+                <strong>Evidence wins</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" className="px-5 py-16 sm:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+              <div>
+                <p className="text-sm font-bold uppercase text-ink-soft">Selected work</p>
+                <h2 className="mt-2 text-4xl font-black sm:text-5xl">Case study starters</h2>
+              </div>
+              <p className="max-w-xl text-ink-soft">
+                Replace these with your own projects. Each card is structured around context, role, outcome, and the artifacts that prove your design decisions.
+              </p>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-3">
+              {caseStudies.map((project) => (
+                <article
+                  className="case-card rounded-md border-2 border-ink bg-white p-5 shadow-solid transition hover:-translate-y-1"
+                  key={project.title}
+                >
+                  <div className={`mb-5 h-40 rounded-md border-2 border-ink ${project.accent} p-4`}>
+                    <div className="flex h-full flex-col justify-between">
+                      <span className="w-max rounded-md border-2 border-ink bg-white px-2 py-1 text-sm font-bold">
+                        {project.type}
+                      </span>
+                      <div className="space-y-2">
+                        <div className="h-3 w-3/4 rounded-sm bg-ink/80" />
+                        <div className="h-3 w-1/2 rounded-sm bg-ink/40" />
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-sm font-semibold text-ink-soft">{project.role}</p>
+                  <h3 className="mt-2 text-2xl font-black">{project.title}</h3>
+                  <p className="mt-3 leading-7 text-ink-soft">{project.prompt}</p>
+                  <p className="mt-5 rounded-md border-2 border-ink bg-highlighter px-3 py-2 font-bold">
+                    {project.outcome}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.notes.map((note) => (
+                      <span
+                        className="rounded-md border border-ink/20 bg-paper px-3 py-1 text-sm text-ink-soft"
+                        key={note}
+                      >
+                        {note}
+                      </span>
+                    ))}
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="py-8 px-6 bg-bg-secondary border-t border-bg-tertiary">
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-fg-secondary text-sm">
-              © 2024 Your Name. All rights reserved.
-            </p>
+        <section id="process" className="canvas-grid border-y border-ink/10 px-5 py-16 sm:px-8 lg:py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 max-w-3xl">
+              <p className="text-sm font-bold uppercase text-ink-soft">Process</p>
+              <h2 className="mt-2 text-4xl font-black sm:text-5xl">From open question to useful product decision.</h2>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-4">
+              {processSteps.map((step) => (
+                <article className="process-card rounded-md border-2 border-ink bg-white p-5 shadow-solid" key={step.title}>
+                  <span className="text-sm font-black text-ink-soft">{step.label}</span>
+                  <h3 className="mt-5 text-2xl font-black">{step.title}</h3>
+                  <p className="mt-3 leading-7 text-ink-soft">{step.copy}</p>
+                </article>
+              ))}
+            </div>
           </div>
-        </footer>
+        </section>
+
+        <section id="about" className="px-5 py-16 sm:px-8 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+            <div>
+              <p className="text-sm font-bold uppercase text-ink-soft">About</p>
+              <h2 className="mt-2 text-4xl font-black sm:text-5xl">A practical designer for ambiguous product spaces.</h2>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              <article className="rounded-md border-2 border-ink bg-sticky-lilac p-6 shadow-solid">
+                <h3 className="text-2xl font-black">Bio prompt</h3>
+                <p className="mt-4 leading-7">
+                  Write a short story about the customers you understand best, the teams you partner with, and the kind of product problems you want more of.
+                </p>
+              </article>
+              <article className="rounded-md border-2 border-ink bg-white p-6 shadow-solid">
+                <h3 className="text-2xl font-black">Toolkit</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span className="rounded-md border-2 border-ink bg-paper px-3 py-2 text-sm font-semibold" key={skill}>
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="border-t border-ink/10 bg-ink px-5 py-16 text-white sm:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-center">
+            <div>
+              <p className="text-sm font-bold uppercase text-white/70">Contact</p>
+              <h2 className="mt-2 max-w-2xl text-4xl font-black sm:text-5xl">Ready to turn the next ambiguous brief into a clearer experience.</h2>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <a
+                className="rounded-md border-2 border-white bg-white px-5 py-3 text-center font-semibold text-ink shadow-solid-white transition hover:-translate-y-0.5"
+                href="mailto:hello@example.com"
+              >
+                hello@example.com
+              </a>
+              <a
+                className="rounded-md border-2 border-white px-5 py-3 text-center font-semibold transition hover:-translate-y-0.5"
+                href="https://www.linkedin.com"
+                rel="noreferrer"
+                target="_blank"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   )
