@@ -1,14 +1,30 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import Link from 'next/link'
 
-const caseStudies = [
+type CaseStudy = {
+  title: string
+  href?: string
+  type: string
+  role: string
+  outcome: string
+  prompt: string
+  notes: string[]
+  accent: string
+  image?: string
+}
+
+const caseStudies: CaseStudy[] = [
   {
-    title: 'CareNav onboarding',
-    type: 'Mobile health',
+    title: 'A testing card',
+    href: '/case-studies/carenav-onboarding',
+    type: 'Hands on prototype',
     role: 'Lead UX designer',
     outcome: '+31% completed first appointment setup',
     prompt: 'Reduce anxiety for first-time patients booking virtual care.',
     notes: ['Discovery interviews', 'Journey map', 'Prototype tests'],
     accent: 'bg-sticky-yellow',
+    image: '/case-studies/testing-card-prototype.png',
   },
   {
     title: 'Pulse research hub',
@@ -197,40 +213,72 @@ export default function Home() {
             </div>
 
             <div className="grid gap-5 lg:grid-cols-3">
-              {caseStudies.map((project) => (
-                <article
-                  className="case-card rounded-md border-2 border-ink bg-white p-5 shadow-solid transition hover:-translate-y-1"
-                  key={project.title}
-                >
-                  <div className={`mb-5 h-40 rounded-md border-2 border-ink ${project.accent} p-4`}>
-                    <div className="flex h-full flex-col justify-between">
-                      <span className="w-max rounded-md border-2 border-ink bg-white px-2 py-1 text-sm font-bold">
-                        {project.type}
-                      </span>
-                      <div className="space-y-2">
-                        <div className="h-3 w-3/4 rounded-sm bg-ink/80" />
-                        <div className="h-3 w-1/2 rounded-sm bg-ink/40" />
-                      </div>
+              {caseStudies.map((project) => {
+                const card = (
+                  <article
+                    className="case-card flex h-full flex-col items-start gap-2 rounded-md border-2 border-ink bg-white p-[22px] shadow-solid transition hover:-translate-y-1"
+                    key={project.title}
+                  >
+                    <div className={`relative h-40 w-full shrink-0 overflow-hidden rounded-md border-2 border-ink ${project.accent} p-[18px]`}>
+                      {project.image ? (
+                        <>
+                          <Image
+                            alt=""
+                            className="absolute inset-0 h-full w-full object-cover object-center"
+                            fill
+                            sizes="(min-width: 1024px) 33vw, calc(100vw - 84px)"
+                            src={project.image}
+                          />
+                          <span className="relative z-10 w-max rounded-md border-2 border-ink bg-white px-2.5 py-1.5 text-sm font-bold">
+                            {project.type}
+                          </span>
+                        </>
+                      ) : (
+                        <div className="flex h-full flex-col justify-between">
+                          <span className="w-max rounded-md border-2 border-ink bg-white px-2.5 py-1.5 text-sm font-bold">
+                            {project.type}
+                          </span>
+                          <div className="space-y-2">
+                            <div className="h-3 w-3/4 rounded-sm bg-ink/80" />
+                            <div className="h-3 w-1/2 rounded-sm bg-ink/40" />
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  <p className="text-sm font-semibold text-ink-soft">{project.role}</p>
-                  <h3 className="mt-2 text-2xl font-black">{project.title}</h3>
-                  <p className="mt-3 leading-7 text-ink-soft">{project.prompt}</p>
-                  <p className="mt-5 rounded-md border-2 border-ink bg-highlighter px-3 py-2 font-bold">
-                    {project.outcome}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.notes.map((note) => (
-                      <span
-                        className="rounded-md border border-ink/20 bg-paper px-3 py-1 text-sm text-ink-soft"
-                        key={note}
-                      >
-                        {note}
-                      </span>
-                    ))}
-                  </div>
-                </article>
-              ))}
+                    <p className="w-full pt-3 text-sm font-bold text-ink-soft">{project.role}</p>
+                    <h3 className="w-full text-2xl font-black">{project.title}</h3>
+                    <p className="w-full pb-3 pt-1 text-xl leading-7 text-ink-soft">{project.prompt}</p>
+                    <p className="w-full rounded-md border-2 border-ink bg-highlighter px-[14px] py-2.5 text-xl font-bold leading-6">
+                      {project.outcome}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-3">
+                      {project.notes.map((note) => (
+                        <span
+                          className="rounded-md border border-ink/20 bg-paper px-3 py-[5px] text-sm text-ink-soft"
+                          key={note}
+                        >
+                          {note}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                )
+
+                if (project.href) {
+                  return (
+                    <Link
+                      aria-label={`Open ${project.title} case study`}
+                      className="block focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/20"
+                      href={project.href}
+                      key={project.title}
+                    >
+                      {card}
+                    </Link>
+                  )
+                }
+
+                return card
+              })}
             </div>
           </div>
         </section>
