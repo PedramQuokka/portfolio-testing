@@ -28,6 +28,7 @@ const caseStudies: CaseStudy[] = [
   },
   {
     title: 'Pulse research hub',
+    href: '/case-studies/case-study-template',
     type: 'B2B SaaS',
     role: 'Product designer',
     outcome: '2.4x faster insight retrieval for product teams',
